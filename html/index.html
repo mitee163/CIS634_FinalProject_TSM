@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="eng" and dir="Itr">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Electricity Management System
+        </title>
+        <!-- <link href="css/jquery.bxslider.css" rel="stylesheet" type="text/css"> -->
+        <link href="css/style.css" rel="stylesheet" type="text/css" >
+        <script src="./js/passwordvalidation.js" defer></script>
+    </head>
+    <body>
+            <div id="login-form-wrap">
+                <h1>Login</h1>
+                <form id="login-form" onsubmit ="return verifyPassword()">
+                    <p>
+                        <input type="email" id="email" name="email" placeholder="Email Address" required><i class="validation"><span></span><span></span></i>
+                    </p>
+                    <p>
+                        <input type="password" id="password" name="password" value="" placeholder="Password" required><i class="validation"><span></span><span></span></i>
+                    </p>
+                    <p>
+                        <input type="submit" id="login" value="Submit">
+                    </p>
+                </form>
+                <div id="create-account-wrap">
+                    <p>Not a member? <a href="#">Create Account</a><p>
+                </div>
+            </div>
+    </body>
+    
+</html>
