@@ -47,6 +47,6 @@ function setAlert(message) {
 signupFormEl.addEventListener("submit", formSignup);
 
 // 4. Add an event listener for the google button click
-googleButtonEl.addEventListener("click", function () {
-  Userfront.signup({ method: "google" });
-});
+// googleButtonEl.addEventListener("click", function () {
+//   Userfront.signup({ method: "google" });
+// });
