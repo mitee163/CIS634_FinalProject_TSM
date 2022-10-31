@@ -9,6 +9,25 @@
     margin-bottom: 10px;
   } */
 
+
+
+
+
+
+
+
+body {
+  background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 100%; */
+    position: relative;
+    /* background-color: #9f9da7; */
+    font-size: 1.6rem;
+    font-family: "Open Sans", sans-serif;
+    color: #2b3e51;
+}
+
 h1 {
   margin-left: 70px;
 }
