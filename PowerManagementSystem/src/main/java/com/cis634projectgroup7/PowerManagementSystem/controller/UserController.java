@@ -17,8 +17,8 @@ import com.cis634projectgroup7.PowerManagementSystem.model.User;
 import com.cis634projectgroup7.PowerManagementSystem.service.UserService;
 
 @RestController
-@RequestMapping("/user")
-@CrossOrigin
+@RequestMapping("/api/v1")
+@CrossOrigin("http://localhost:3000")
 public class UserController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class UserController {
 		return userService.get(userId);
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/users")
 	public String add(@RequestBody User user) {
 		userService.saveUser(user);
 		return "New user is added";
