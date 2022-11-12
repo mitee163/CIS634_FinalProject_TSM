@@ -1,12 +1,21 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import RegisterUser from './components/RegisterUser';
+import UserList from './components/UserList';
 
 function App() {
   return (
     <>
+    <BrowserRouter>
       <Navbar />
-      <RegisterUser />
+      <Routes>
+        <Route index element={<UserList />}></Route>
+        <Route path = "/" element={<UserList />}></Route>
+        <Route path = "/userList" element={<UserList />}></Route>
+        <Route path = "/addUser" element={<RegisterUser />}></Route>
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }
