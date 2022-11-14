@@ -1,11 +1,18 @@
 package com.cis634projectgroup7.PowerManagementSystem.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class User {
 
 	@Id
@@ -15,6 +22,8 @@ public class User {
 	private String Password;
 	private String Email;
 	private String Address;
+	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private Set<Bill> bills;
 	
 	public User() {
 	}
