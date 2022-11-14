@@ -61,11 +61,11 @@ public class UserController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping("/loginUser")
+	@PostMapping("/loginUser")
 	@ResponseBody
-	public Boolean existsUserByEmailAndPassword(@RequestParam String email,@RequestParam String password)
+	public User existsUserByEmailAndPassword(@RequestParam String email,@RequestParam String password)
 	{
-		Boolean result = userService.existsUserByEmailAndPassword(email, password);
-		return result;
+		User user = userService.existsUserByEmailAndPassword(email, password);
+		return user;
 	}
 }
