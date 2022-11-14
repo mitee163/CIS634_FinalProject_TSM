@@ -8,8 +8,20 @@ const Login = () => {
     
     const navigate = useNavigate();
 
-    function login(){
+    async function login(){
         console.log(email, password);
+        let item =(email, password);
+        let result = await fetch("localhost:8080/api/v1/loginUser", {
+            method:'POST',
+            headers:{
+                "Content-Type":"application/json",
+                "Accept":"application/json"
+            },
+            body:JSON.stringify(item)
+        });
+        result = await result.json();
+        localStorage.setItem("user-info",JSON.stringify(result))
+        navigate.push("/UserHome")
     }
 
     return (
@@ -26,7 +38,7 @@ const Login = () => {
                             Email
                         </label>
                         <input
-                            type="text"
+                            type="email"
                             placeholder="email"
                             onChange={(e) => setEmail(e.target.value)}
                             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
