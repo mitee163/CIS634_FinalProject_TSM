@@ -9,6 +9,7 @@ public interface UserService {
 	public List<User> getAllUsers();
 	public User get(Integer id);
 	public User saveUser(User user);
-	public void updateUser(User user, Integer id);
-	public void deleteUser(Integer id);
+	public User updateUser(User user, Integer id);
+	public Boolean deleteUser(Integer id);
+	public Boolean existsUserByEmailAndPassword(String Email, String Password);
 }
