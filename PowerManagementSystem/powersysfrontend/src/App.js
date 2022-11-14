@@ -10,13 +10,13 @@ function App() {
   return (
     <>
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route index element={<Login />}></Route>
         <Route path = "/" element={<Login />}></Route>
         <Route path = "/userList" element={<UserList />}></Route>
         <Route path = "/addUser" element={<RegisterUser />}></Route>
-        <Route path = "/login" element={<Login />}></Route>
+        {/* <Route path = "/login" element={<Login />}></Route> */}
         <Route path = "/userhome" element={<UserHome />}></Route>
       </Routes>
     </BrowserRouter>
