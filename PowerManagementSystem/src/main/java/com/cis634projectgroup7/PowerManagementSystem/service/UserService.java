@@ -11,5 +11,5 @@ public interface UserService {
 	public User saveUser(User user);
 	public User updateUser(User user, Integer id);
 	public Boolean deleteUser(Integer id);
-	public Boolean existsUserByEmailAndPassword(String Email, String Password);
+	public User existsUserByEmailAndPassword(String Email, String Password);
 }

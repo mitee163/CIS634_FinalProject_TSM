@@ -47,12 +47,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Boolean existsUserByEmailAndPassword(String Email,String Password) {
+	public User existsUserByEmailAndPassword(String Email,String Password) {
 		User existingUser = userRepository.findByEmailAndPassword(Email,Password);
-		if (existingUser == null) {
-			return false;
-		}
-		return true;
+		return existingUser;
 	}
 	
 }
