@@ -12,8 +12,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route index element={<UserList />}></Route>
-        <Route path = "/" element={<UserList />}></Route>
+        <Route index element={<Login />}></Route>
+        <Route path = "/" element={<Login />}></Route>
         <Route path = "/userList" element={<UserList />}></Route>
         <Route path = "/addUser" element={<RegisterUser />}></Route>
         <Route path = "/login" element={<Login />}></Route>

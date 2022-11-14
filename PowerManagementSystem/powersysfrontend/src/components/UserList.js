@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import UserService from '../services/UserService';
 
 const UserList = () => {
-
     const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading = (true);
+            try {
+                const response = await UserService.getUser();
+                setUser(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+            setLoading(false);
+        }
+        fetchData();
+    }, []);
+    
 
   return (
     <div className="container mx-auto my-8">
@@ -32,26 +50,38 @@ const UserList = () => {
                         </th>
                     </tr>
                 </thead>
+                {!loading && (
                 <tbody>
+                    {user.map((u) => (
                     <tr>
                         <td className="text-left px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">Shaishav</div>
+                            <div className="text-sm text-gray-500">
+                                {u.name}
+                            </div>
                         </td>
                         <td className="text-left px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">Cleveland, Ohio</div>
+                            <div className="text-sm text-gray-500">
+                                {u.address}
+                            </div>
                         </td>
                         <td className="text-left px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">shaishavshah@gmail.com</div>
+                            <div className="text-sm text-gray-500">
+                                {u.email}
+                            </div>
                         </td>
                         <td className="text-left px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">12345</div>
+                            <div className="text-sm text-gray-500">
+                                {u.password}
+                            </div>
                         </td>
                         <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
                             <a href="#" className="text-indigo-600 hover:text-indigo-800 px-4">Edit</a>
                             <a href="#" className="text-indigo-600 hover:text-indigo-800">Delete</a>
                         </td>
                     </tr>
+                    ))}
                 </tbody>
+                )}
             </table>
         </div>
     </div>
