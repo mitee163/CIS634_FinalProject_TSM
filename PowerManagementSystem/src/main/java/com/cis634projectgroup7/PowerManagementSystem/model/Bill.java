@@ -2,14 +2,8 @@ package com.cis634projectgroup7.PowerManagementSystem.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,11 +17,22 @@ public class Bill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Bill_Id;
+	
+	@NotBlank
 	private Timestamp Bill_Date;
+	
+	@NotBlank
 	private Timestamp Due_Date;
+	
+	@NotBlank
 	private int Amount;
+	
+	@NotBlank
 	private int Units;
+	
+	@NotBlank
 	private String Status;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="User_Id",nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)

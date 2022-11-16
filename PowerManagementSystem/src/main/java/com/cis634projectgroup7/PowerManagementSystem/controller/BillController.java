@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ public class BillController {
 	@Autowired
 	private BillService billService;
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/bills")
 	public List<Bill> getAllBills(){
 		return billService.getAllBills();
@@ -39,6 +41,7 @@ public class BillController {
 		return ResponseEntity.ok(bill);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/bills")
 	public Bill saveBill(@RequestBody Bill bill) {
 		return billService.saveBill(bill);
@@ -50,6 +53,7 @@ public class BillController {
 		return ResponseEntity.ok(bill);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/bills/{billId}")
 	public ResponseEntity<Map<String,Boolean>> deleteBill(@PathVariable("billId") Integer billId){
 		Boolean deleted = false;

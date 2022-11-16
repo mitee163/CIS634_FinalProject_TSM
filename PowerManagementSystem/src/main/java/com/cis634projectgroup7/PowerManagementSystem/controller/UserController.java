@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/users")
 	public List<User> getAllUsers(){
 		return userService.getAllUsers();
@@ -52,6 +54,7 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/users/{userId}")
 	public ResponseEntity<Map<String,Boolean>> deleteUser(@PathVariable("userId") Integer userId){
 		Boolean deleted = false;
@@ -61,11 +64,11 @@ public class UserController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping("/loginUser")
+/*	@PostMapping("/loginUser")
 	@ResponseBody
 	public User existsUserByEmailAndPassword(@RequestParam String email,@RequestParam String password)
 	{
 		User user = userService.existsUserByEmailAndPassword(email, password);
 		return user;
-	}
+	}*/
 }
