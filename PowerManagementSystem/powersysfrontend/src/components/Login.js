@@ -9,9 +9,11 @@ const Login = () => {
     const navigate = useNavigate();
 
     async function login(){
-        console.log(email, password);
-        let item =(email, password);
-        let result = await fetch("localhost:8080/api/v1/loginUser", {
+        console.warn(email,password);
+        let item ={}
+        item.email=email;
+        item.password=password;
+        let result = await fetch("http://localhost:8080/api/v1/loginUser", {
             method:'POST',
             headers:{
                 "Content-Type":"application/json",
@@ -21,7 +23,7 @@ const Login = () => {
         });
         result = await result.json();
         localStorage.setItem("user-info",JSON.stringify(result))
-        navigate.push("/UserHome")
+        navigate("/UserHome")
     }
 
     return (
