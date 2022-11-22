@@ -24,7 +24,7 @@ import com.cis634projectgroup7.PowerManagementSystem.service.UserService;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
 public class UserController {
 
 	@Autowired

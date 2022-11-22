@@ -1,6 +1,18 @@
 package com.cis634projectgroup7.PowerManagementSystem.config;
 
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -14,6 +26,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.cis634projectgroup7.PowerManagementSystem.security.CustomUserDetailService;
 import com.cis634projectgroup7.PowerManagementSystem.security.JwtAuthenticationEntryPoint;
@@ -68,5 +83,51 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 	
+	
+	@Component
+	public class CORSFilter implements Filter {
+
+	    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+	        HttpServletResponse response = (HttpServletResponse) res;
+	        response.setHeader("Access-Control-Allow-Origin", "*");
+	        response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+	        response.setHeader("Access-Control-Max-Age", "3600");
+	        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	        chain.doFilter(req, res);
+	    }
+
+	    public void init(FilterConfig filterConfig) {}
+
+	    public void destroy() {}
+
+	}
+	
+	/*
+	@Bean
+	public FilterRegistrationBean corsFilter() {
+		
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		
+		
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.addAllowedOriginPattern("*");
+		corsConfiguration.addAllowedHeader("Authorization");
+		corsConfiguration.addAllowedHeader("Content-Type");
+		corsConfiguration.addAllowedHeader("Accept");
+		corsConfiguration.addAllowedMethod("POST");
+		corsConfiguration.addAllowedMethod("GET");
+		corsConfiguration.addAllowedMethod("DELETE");
+		corsConfiguration.addAllowedMethod("PUT");
+		corsConfiguration.addAllowedMethod("OPTIONS");
+		corsConfiguration.setMaxAge(3600L);
+		
+		
+		source.registerCorsConfiguration("/**", corsConfiguration );
+		
+		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+		return bean;
+	}
+	*/
 	
 }
