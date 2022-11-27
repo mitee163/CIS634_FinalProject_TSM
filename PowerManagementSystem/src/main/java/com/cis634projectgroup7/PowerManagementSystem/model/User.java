@@ -32,6 +32,7 @@ public class User implements UserDetails {
 	@NotBlank
 	@Email
 	@Size(max = 50)
+	@Column(unique = true)
 	private String Email;
 	
 	@Size(max = 250)

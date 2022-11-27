@@ -14,22 +14,23 @@ import {
     Row,
 } from 'reactstrap'
 import Base from '../components/Base'
+import { toast } from 'react-toastify'
 
 
 
 const Signup = () => {
 
     const [data, setData]=useState({
-        name:'',
-        address:'',
+        name:"",
+        address:"",
         //email is passed as username
-        username:'',
-        password:'',
+        username:"",
+        password:"",
     })
 
-    const [error, seterror]=useState({
+    const [error, setError]=useState({
         errors:{},
-        isError:false
+        isError:false,
     })
 
     useEffect(() => {
@@ -45,16 +46,23 @@ const Signup = () => {
     //resetting the form
     const resetData=() => {
     setData({
-        name:'',
-        address:'',
-        username:'',
-        password:'',
+        name:"",
+        address:"",
+        username:"",
+        password:"",
     })
 }
 
 //submit the form
 const submitForm=(event)=>{
-    event.preventDefault()
+    event.preventDefault();
+
+    if(error.isError){
+        toast.error("Form data is invalid!!");
+        setError({...error,isError:false})
+        return;
+    }
+
     console.log(data);
     //data validate
 
@@ -62,9 +70,21 @@ const submitForm=(event)=>{
         signUp(data).then((resp)=>{
             console.log(resp);
             console.log("success log");
+            toast.success("User is Registered successfully!!");
+            setData({
+                name:"",
+                address:"",
+                username:"",
+                password:"",
+            })
         }).catch((error)=>{
             console.log(error);
             console.log("Error log");
+            //handle errors in proper way.
+            setError({
+                errors:error,
+                isError:true
+            })
         })
 }
 
@@ -89,6 +109,7 @@ const submitForm=(event)=>{
                                             id="name"
                                             onChange={(e)=>handleChange(e,'name')}
                                             value={data.name}
+                                            // invalid={ error.errors?.response?.data?.name ? true: false }
                                         />
                                     </FormGroup>
 
