@@ -36,7 +36,6 @@ const CustomNavbar = () => {
                 <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
-<<<<<<< Updated upstream
                         <NavItem>
                             <NavLink tag={ReactLink} to="/login">
                                 Login
@@ -47,8 +46,7 @@ const CustomNavbar = () => {
                                 Sign Up
                             </NavLink>
                         </NavItem>
-=======
->>>>>>> Stashed changes
+
                         {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
@@ -67,8 +65,6 @@ const CustomNavbar = () => {
                 </DropdownMenu>
               </UncontrolledDropdown> */}
                     </Nav>
-<<<<<<< Updated upstream
-=======
                     <Nav navbar>
 
                         {
@@ -93,7 +89,6 @@ const CustomNavbar = () => {
                             </NavLink>
                         </NavItem>
                     </Nav>
->>>>>>> Stashed changes
                 </Collapse>
             </Navbar>
         </div>
