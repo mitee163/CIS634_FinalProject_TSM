@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink as ReactLink } from 'react-router-dom'
 import {
     Collapse,
@@ -14,17 +14,29 @@ import {
     DropdownItem,
     NavbarText,
 } from 'reactstrap'
+import { getCurrentUserDetail, isLoggedIn } from '../auth'
 
 const CustomNavbar = () => {
     const [isOpen, setIsOpen] = useState(false)
 
+    const [login, setLogin]=useState(false)
+    const [user, setUser]=useState(undefined)
+
+    useEffect(()=>{
+
+        setLogin(isLoggedIn())
+        setUser(getCurrentUserDetail())
+
+    },[login])
+
     return (
         <div>
-            <Navbar color="dark" expand="md" dark>
+            <Navbar color="dark" expand="md" dark className="px-5">
                 <NavbarBrand href="/">Electricity Management</NavbarBrand>
                 <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
+<<<<<<< Updated upstream
                         <NavItem>
                             <NavLink tag={ReactLink} to="/login">
                                 Login
@@ -35,6 +47,8 @@ const CustomNavbar = () => {
                                 Sign Up
                             </NavLink>
                         </NavItem>
+=======
+>>>>>>> Stashed changes
                         {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
@@ -53,6 +67,33 @@ const CustomNavbar = () => {
                 </DropdownMenu>
               </UncontrolledDropdown> */}
                     </Nav>
+<<<<<<< Updated upstream
+=======
+                    <Nav navbar>
+
+                        {
+                            login && (
+                                <NavItem>
+                                    <NavLink>
+                                        Logout
+                                    </NavLink>
+                                </NavItem>
+                                
+                            )
+                        }
+
+                        <NavItem>
+                            <NavLink tag={ReactLink} to="/login">
+                                Login
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={ReactLink} to="/signup">
+                                Sign Up
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+>>>>>>> Stashed changes
                 </Collapse>
             </Navbar>
         </div>
