@@ -1,5 +1,7 @@
 package com.cis634projectgroup7.PowerManagementSystem.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +46,10 @@ public class AuthController {
 		this.authenticate(request.getUsername(), request.getPassword());
 		UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
 		String token = this.jwtTokenHelper.generateToken(userDetails);
+		Optional<User> userByEmail = userService.findByEmail(request.getUsername());
 		JwtAuthResponse response = new JwtAuthResponse();
 		response.setToken(token);
+		response.setUser(userByEmail.get());
 		return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
 	}
 
