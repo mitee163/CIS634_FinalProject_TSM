@@ -16,8 +16,11 @@ import {
 import Base from '../components/Base'
 import { loginUser } from '../services/user-service'
 import { doLogin } from '../auth';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+
+    const navigate =useNavigate ();
 
     const[loginDetail, setLoginDetail]=useState({
         username:"",
@@ -59,6 +62,9 @@ const Login = () => {
             doLogin(data,()=>{
                 console.log("login details saved to localstorage");
                 //redirect to user dashboard page
+                navigate("/user/dashboard")
+                
+
             })
 
             toast.success("User logged in successfully!!")
