@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useEffect, useState } from 'react'
 import {
     Table,
@@ -9,6 +10,12 @@ import Base from '../../components/Base'
 import { toast } from 'react-toastify'
 import { isLoggedIn, getCurrentUserDetail } from '../../auth'
 import userContext from '../../context/userContext'
+=======
+import React from 'react'
+import { Container } from 'reactstrap'
+import Base from '../../components/Base'
+import AddBills from '../admin/AddBills'
+>>>>>>> Stashed changes
 
 const Userdashboard = () => {
 let billList = [];
@@ -78,8 +85,21 @@ let billList = [];
     </userContext.Consumer>
   );
 
+<<<<<<< Updated upstream
   
   
 };
+=======
+      <Container>
+
+        <AddBills />
+
+      </Container>
+
+    </Base>
+
+  )
+}
+>>>>>>> Stashed changes
 
 export default Userdashboard
