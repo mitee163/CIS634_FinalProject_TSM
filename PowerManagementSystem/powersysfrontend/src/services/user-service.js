@@ -13,13 +13,9 @@ export const loginUser = (loginDetail)=>{
 }
 
 export const getUserDetails = (userId)=>{
-    return myAxios.get("/api/v1/users").then((response)=>response.data)
+    return myAxios.get("/users").then((response)=>response.data)
 }
 
 export const getUsers = ()=>{
-<<<<<<< Updated upstream
-    return myAxios.get("/api/v1/users").then((response)=>response.data)
-=======
     return myAxios.post("/auth/users").then((response)=>response.data)
->>>>>>> Stashed changes
 }
