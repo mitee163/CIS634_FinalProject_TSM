@@ -54,16 +54,6 @@ const CustomNavbar = () => {
                 <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
-                        <NavItem>
-                            <NavLink tag={ReactLink} to="/">
-                                Login
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={ReactLink} to="/signup">
-                                Sign Up
-                            </NavLink>
-                        </NavItem>
 
                         {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
