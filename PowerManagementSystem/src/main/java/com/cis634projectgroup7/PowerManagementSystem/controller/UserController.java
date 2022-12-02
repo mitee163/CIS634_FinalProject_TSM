@@ -54,7 +54,7 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/users/{userId}")
 	public ResponseEntity<Map<String,Boolean>> deleteUser(@PathVariable("userId") Integer userId){
 		Boolean deleted = false;

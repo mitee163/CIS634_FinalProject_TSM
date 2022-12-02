@@ -9,6 +9,7 @@ import Userdashboard from './pages/user-routes/Userdashboard';
 import Privateroute from './components/Privateroute';
 import ProfileInfo from './pages/user-routes/ProfileInfo';
 import UserProvider from './context/userProvider';
+import AddBills from './pages/admin/AddBills';
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
         {/* <Route path="/" element={<Home />}/> */}
         <Route path="/" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/" element={<Login />}/>
+        <Route path="/login" element={<Login />}/>
         <Route path="/user" element={<Privateroute />}>
           <Route path="dashboard" element={<Userdashboard />}/>
           <Route path="profile-info" element={<ProfileInfo />}/>
+          <Route path="add-bill" element={<AddBills />}/>
         </Route>
       </Routes>
     </BrowserRouter>
