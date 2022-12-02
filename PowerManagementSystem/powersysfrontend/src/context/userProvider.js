@@ -6,14 +6,14 @@ function UserProvider({children}){
 const [user,setUser] = useState({
 data: {},
 login:false
-})
+});
 
 useEffect(() => {
     setUser({
         data: getCurrentUserDetail(),
         login: isLoggedIn()
     })
-},[])
+},[]);
 
 
     return(

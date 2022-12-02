@@ -3,36 +3,33 @@ import {
     Table,
     Container,
     Row,
-    Col
+    Col,
+    Button
 } from 'reactstrap'
 import Base from '../../components/Base'
-import { toast } from 'react-toastify'
-import { isLoggedIn, getCurrentUserDetail } from '../../auth'
 import userContext from '../../context/userContext'
 
 const Userdashboard = () => {
-let billList = [];
-  
-
   return(
     <userContext.Consumer>
       {(object) => (
+        
         <Base>
-        <Container fluid style={{marginTop: '10px'}}>
+        <Container style={{marginTop: '20px'}}>
         <Row><Col><h3>User Details:</h3></Col></Row>
         <Row>
-                <Col>Name:</Col>
+                <Col xs={3}>Name:</Col>
                 <Col>{object.user.data.name}</Col>
             </Row>
             <Row>
-                <Col>Email:</Col>
+                <Col xs={3}>Email:</Col>
                 <Col>{object.user.data.username}</Col>
             </Row>
             <Row>
-                <Col>Address:</Col>
+                <Col xs={3}>Address:</Col>
                 <Col>{object.user.data.address}</Col>
             </Row>
-        <Table striped bordered hover style={{marginTop: '10px'}}>
+        <Table striped bordered hover style={{marginTop: '20px'}}>
       <thead>
         <tr>
           <th>Bill Date</th>
@@ -44,8 +41,9 @@ let billList = [];
         </tr>
       </thead>
       <tbody>
-        {/* {
-  billList = user.bills.map(bill =>{
+        {
+  object.user.data.bills != undefined && (
+  object.user.data.bills.map(bill =>{
     return <tr key={bill.bill_Id}>
                   <td>
                     <div>{bill.bill_Date}</div>
@@ -63,12 +61,11 @@ let billList = [];
                     <div>{bill.status}</div>
                   </td>
                   <td>
-                    <a href="#">View Bill Details</a>
-                    <a href="#">Pay Bill</a>
+                  <Button variant="secondary" className="ms-2">Pay Bill</Button>
                   </td>
                 </tr>
-  })
-        } */}
+  }))
+        }
       
       </tbody>
     </Table>
