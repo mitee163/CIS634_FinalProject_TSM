@@ -22,13 +22,13 @@ import com.cis634projectgroup7.PowerManagementSystem.service.BillService;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
 public class BillController {
 	
 	@Autowired
 	private BillService billService;
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/bills")
 	public List<Bill> getAllBills(){
 		return billService.getAllBills();
@@ -41,7 +41,7 @@ public class BillController {
 		return ResponseEntity.ok(bill);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/bills")
 	public Bill saveBill(@RequestBody Bill bill) {
 		return billService.saveBill(bill);

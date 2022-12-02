@@ -11,6 +11,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,11 +27,11 @@ public class User implements UserDetails {
 	private int User_Id;
 	private String Name;
 	
-	@NotBlank
+	//@NotBlank
 	@Size(max = 120)
 	private String Password;
 	
-	@NotBlank
+	//@NotBlank
 	@Email
 	@Size(max = 50)
 	@Column(unique = true)
@@ -38,7 +40,12 @@ public class User implements UserDetails {
 	@Size(max = 250)
 	private String Address;
 
-	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//	private Set<Bill> bills = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	@LazyCollection(value = LazyCollectionOption.FALSE)
 	private Set<Bill> bills = new HashSet<>();
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -1,10 +1,13 @@
 package com.cis634projectgroup7.PowerManagementSystem.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -18,40 +21,47 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Bill_Id;
 	
-	@NotBlank
-	private Timestamp Bill_Date;
+	//@NotBlank
+	private Date Bill_Date;
 	
-	@NotBlank
-	private Timestamp Due_Date;
+	//@NotBlank
+	private Date Due_Date;
 	
-	@NotBlank
+	//@NotBlank
 	private int Amount;
 	
-	@NotBlank
+	//@NotBlank
 	private int Units;
 	
-	@NotBlank
+	//@NotBlank
 	private String Status;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="User_Id",nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private User user;
+//	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+//	@JoinColumn(name="user_id",nullable = false)
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	@JsonIgnore
+//	private User user;
+	
+//	@ManyToOne
+//	@Cascade(CascadeType.ALL)
+//	@JoinColumn(name="user_id")
+//	private User user;
+	
+	private int User_Id;
 	
 	public Bill() {
 	}
 	
-	public Timestamp getBill_Date() {
+	public Date getBill_Date() {
 		return Bill_Date;
 	}
-	public void setBill_Date(Timestamp bill_Date) {
+	public void setBill_Date(Date bill_Date) {
 		Bill_Date = bill_Date;
 	}
-	public Timestamp getDue_Date() {
+	public Date getDue_Date() {
 		return Due_Date;
 	}
-	public void setDue_Date(Timestamp due_Date) {
+	public void setDue_Date(Date due_Date) {
 		Due_Date = due_Date;
 	}
 	public int getAmount() {
@@ -72,10 +82,19 @@ public class Bill {
 	public void setStatus(String status) {
 		Status = status;
 	}
-	public User getUser() {
-		return user;
+	
+//	public User getUser() {
+//		return user;
+//	}
+//	public void setUser(User userobj) {
+//		user = userobj;
+//	}
+
+	public int getUser_Id() {
+		return User_Id;
 	}
-	public void setUser(User userobj) {
-		user = userobj;
+
+	public void setUser_Id(int user_Id) {
+		User_Id = user_Id;
 	}
 }
