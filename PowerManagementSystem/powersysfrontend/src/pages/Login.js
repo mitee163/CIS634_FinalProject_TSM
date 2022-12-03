@@ -68,9 +68,16 @@ const Login = () => {
                     data: data,
                     login: true
                 });
-                navigate("/user/dashboard");
-                
 
+                if(data.user.roles !== null && data.user.roles[0].role_Id === 602)
+                {
+                    navigate("/user/dashboard");
+                }
+                else if(data.user.roles !== null && data.user.roles[0].role_Id === 601)
+                {
+                    navigate("/admin/dashboard");
+                }
+                //navigate("/user/dashboard");
             })
 
             toast.success("User logged in successfully!!")
