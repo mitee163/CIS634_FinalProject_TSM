@@ -29,6 +29,7 @@ const Userdashboard = () => {
                 <Col xs={3}>Address:</Col>
                 <Col>{object.user.data.address}</Col>
             </Row>
+            <Row style={{marginTop: '20px'}}><Col><h5>User's Bills:</h5></Col></Row>
         <Table striped bordered hover style={{marginTop: '20px'}}>
       <thead>
         <tr>
@@ -61,7 +62,7 @@ const Userdashboard = () => {
                     <div>{bill.status}</div>
                   </td>
                   <td>
-                  <Button variant="secondary" className="ms-2">Pay Bill</Button>
+                  <Button variant="secondary" className="ms-2" disabled={bill.status == "paid"}>Pay Bill</Button>
                   </td>
                 </tr>
   }))
