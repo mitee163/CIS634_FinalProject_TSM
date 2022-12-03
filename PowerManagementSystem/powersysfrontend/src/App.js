@@ -10,6 +10,7 @@ import Privateroute from './components/Privateroute';
 import ProfileInfo from './pages/user-routes/ProfileInfo';
 import UserProvider from './context/userProvider';
 import AddBills from './pages/admin/AddBills';
+import Admindashboard from './pages/admin/Admindashboard';
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <Route path="/user" element={<Privateroute />}>
           <Route path="dashboard" element={<Userdashboard />}/>
           <Route path="profile-info" element={<ProfileInfo />}/>
+          {/* <Route path="add-bill" element={<AddBills />}/> */}
+        </Route>
+        <Route path="/admin" element={<Privateroute />}>
+          <Route path="dashboard" element={<Admindashboard />}/>
           <Route path="add-bill" element={<AddBills />}/>
         </Route>
       </Routes>
