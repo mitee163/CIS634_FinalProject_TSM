@@ -11,11 +11,13 @@ import userContext from '../../context/userContext'
 import { loadAllUsers } from "../../services/category-service"
 
 const Admindashboard = () => {
-    const [allUsers, setAllUsers] = useState([]);
+    const [normalUsers, setNormalUsers] = useState([]);
 
     useEffect(() => {
         loadAllUsers().then((data)=>{
-            setAllUsers(data)
+            let filteredData = data;
+            filteredData = filteredData.filter((item) => item.roles[0].role_Id === 602);
+            setNormalUsers(filteredData);
         }).catch(error=>{
             console.log(error);
         })
@@ -52,8 +54,8 @@ const Admindashboard = () => {
       </thead>
       <tbody>
         {
-  allUsers != undefined && (
-  allUsers.map(u =>{
+  normalUsers != undefined && (
+  normalUsers.map(u =>{
     return <tr key={u.user_Id}>
                   <td>
                     <div>{u.name}</div>
