@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink as ReactLink, useNavigate } from 'react-router-dom'
 import {
     Table,
     Container,
@@ -62,7 +63,7 @@ const Userdashboard = () => {
                     <div>{bill.status}</div>
                   </td>
                   <td>
-                  <Button variant="secondary" className="ms-2" disabled={bill.status == "paid"}>Pay Bill</Button>
+                  <Button variant="secondary" className="ms-2" disabled={bill.status == "paid"} tag={ReactLink} to="/user/billPaid">Pay Bill</Button>
                   </td>
                 </tr>
   }))

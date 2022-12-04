@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Userdashboard from './pages/user-routes/Userdashboard';
 import Privateroute from './components/Privateroute';
 import ProfileInfo from './pages/user-routes/ProfileInfo';
+import Billpaid from './pages/user-routes/Billpaid';
 import UserProvider from './context/userProvider';
 import AddBills from './pages/admin/AddBills';
 import Admindashboard from './pages/admin/Admindashboard';
@@ -26,7 +27,7 @@ function App() {
         <Route path="/user" element={<Privateroute />}>
           <Route path="dashboard" element={<Userdashboard />}/>
           <Route path="profile-info" element={<ProfileInfo />}/>
-          {/* <Route path="add-bill" element={<AddBills />}/> */}
+          <Route path="billPaid" element={<Billpaid />}/>
         </Route>
         <Route path="/admin" element={<Privateroute />}>
           <Route path="dashboard" element={<Admindashboard />}/>
