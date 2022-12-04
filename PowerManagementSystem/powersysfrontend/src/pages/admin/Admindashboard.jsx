@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink as ReactLink, useNavigate } from 'react-router-dom'
 import {
     Table,
     Container,
     Row,
     Col,
-    Button
+    Button,
+    NavItem,
+    NavLink
 } from 'reactstrap'
 import Base from '../../components/Base'
 import userContext from '../../context/userContext'
@@ -42,6 +45,14 @@ const Admindashboard = () => {
                 <Col xs={3}>Address:</Col>
                 <Col>{object.user.data.address}</Col>
             </Row>
+            <div>
+              <div><h6>Add Bill details:</h6></div>
+              <div>
+                  <Button outline className="text-right" tag={ReactLink} to="/admin/add-bill">
+                    Add Bill
+                  </Button>
+              </div>
+            </div>
             <Row style={{marginTop: '20px'}}><Col><h5>All users of the system:</h5></Col></Row>
         <Table striped bordered hover style={{marginTop: '20px'}}>
       <thead>

@@ -70,7 +70,7 @@ const AddBills=()=>{
             return;
         }
 
-        //submit the form on server
+        //submit the bill on server
         createAddBills(addbills).then(data=>{
             alert("Bill created");
             // console.log(addbills);
