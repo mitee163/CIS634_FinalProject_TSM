@@ -15,6 +15,12 @@ import { loadAllUsers } from "../../services/category-service"
 
 const Admindashboard = () => {
     const [normalUsers, setNormalUsers] = useState([]);
+    const navigate =useNavigate ();
+
+    const viewUserBills = (event,param) => {        
+      let urlv = `/admin/user-bills/${param}`;
+      navigate(urlv);
+   };
 
     useEffect(() => {
         loadAllUsers().then((data)=>{
@@ -23,7 +29,7 @@ const Admindashboard = () => {
             setNormalUsers(filteredData);
         }).catch(error=>{
             console.log(error);
-        })
+        });
     }, []);
 
   return(
@@ -78,7 +84,7 @@ const Admindashboard = () => {
                     <div>{u.address}</div>
                   </td>
                   <td>
-                  <Button variant="secondary" className="ms-2">View Bills</Button>
+                  <Button variant="secondary" className="ms-2" onClick={event => viewUserBills(event,u.user_Id)}>View Bills</Button>
                   </td>
                 </tr>
   }))

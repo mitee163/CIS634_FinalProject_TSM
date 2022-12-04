@@ -13,7 +13,8 @@ export const loginUser = (loginDetail)=>{
 }
 
 export const getUserDetails = (userId)=>{
-    return myAxios.get("/users").then((response)=>response.data)
+    let urlVariable = `/users/${userId}`;
+    return myAxios.get(urlVariable).then((response)=>response.data)
 }
 
 export const getUsers = ()=>{
