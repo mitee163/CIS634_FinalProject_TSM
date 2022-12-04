@@ -35,6 +35,18 @@ const AddBills=()=>{
     }
     
 
+    const resetData=() => {
+        setAddbills({
+            bill_Date:new Date(),
+            due_Date:new Date(),
+            amount:"",
+            units:"",
+            status:"",
+            user_Id:"",
+        })
+    }
+
+
     //create bill function
     const createBill=(event)=>{
 
@@ -70,6 +82,7 @@ const AddBills=()=>{
             alert("Please select User !!")
             return;
         }
+
 
         //submit the bill on server
         createAddBills(addbills).then(data=>{
@@ -142,7 +155,7 @@ const AddBills=()=>{
                         </div>
                             <Container className="text-center">
                                 <Button type="submit" color="primary">Add bill</Button>
-                                <Button className="ms-2" color="danger">Reset</Button>
+                                <Button onClick={resetData} type="reset" className="ms-2" color="danger">Reset</Button>
                             </Container>
 
                     </Form>
