@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstrap"
+import Base from "../../components/Base"
 import { createAddBills } from "../../services/addBills-service"
 import { loadAllUsers } from "../../services/category-service"
 
@@ -73,6 +74,14 @@ const AddBills=()=>{
         //submit the bill on server
         createAddBills(addbills).then(data=>{
             alert("Bill created");
+            setAddbills({
+                bill_Date:new Date(),
+                due_Date:new Date(),
+                amount:"",
+                units:"",
+                status:"",
+                user_Id:"",
+            })
             // console.log(addbills);
         }).catch((error)=>{
             alert("error");
@@ -83,6 +92,7 @@ const AddBills=()=>{
 
 
     return(
+        <Base>
         <div className="wrapper">
             <Card className="shadow-sm">
                 <CardBody>
@@ -140,6 +150,7 @@ const AddBills=()=>{
             </Card>
 
         </div>
+        </Base>
     )
 }
 
