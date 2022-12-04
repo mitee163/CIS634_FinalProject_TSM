@@ -140,14 +140,6 @@ const AddBills=()=>{
                         <div className="my-3">
                             <Label for="check">Status</Label>
                             <Input type="text" id="check" placeholder="Paid or Unpaid" name="status" onChange={fieldChanged} />
-                            {/* <FormGroup check inline>
-                                <Label for="check">Paid</Label>
-                                <Input type="checkbox" id="check" name="Status" onChange={fieldChanged}/>
-                            </FormGroup>
-                            <FormGroup check inline>
-                                <Label for="check">Unpaid</Label>
-                                <Input type="checkbox" id="check" name="Status" onChange={fieldChanged}/>
-                            </FormGroup> */}
                         </div>
                         <div className="my-3">
                             <Label for="unitsUsed">Units used</Label>
