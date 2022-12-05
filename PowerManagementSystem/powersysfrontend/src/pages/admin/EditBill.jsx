@@ -111,7 +111,11 @@ const EditBill=()=>{
                         </div>
                         <div className="my-3">
                             <Label for="check">Status</Label>
-                            <Input type="text" id="check" placeholder="Paid or Unpaid" name="status" onChange={fieldChanged} defaultValue={billobj.status} />
+                            <Input type="select" id="check" placeholder="Enter here" name="status" onChange={fieldChanged} defaultValue={billobj.status}>
+                                <option>--Select--</option>
+                                <option>paid</option>
+                                <option>unpaid</option>
+                            </Input>
                         </div>
                         <div className="my-3">
                             <Label for="unitsUsed">Units used</Label>
