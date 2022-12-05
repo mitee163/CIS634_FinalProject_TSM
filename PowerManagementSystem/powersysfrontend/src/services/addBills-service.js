@@ -10,3 +10,14 @@ export const createAddBills=(billData)=>{
     )
             .then((response)=>response.data)
 };
+
+export const editBillById=(billData)=>{
+        // console.log(billData);
+        const apiurlvar = `/bills/${billData.user_Id}`;
+        return privateAxios.put
+        (
+                apiurlvar,
+                billData
+        )
+                .then((response)=>response.data)
+    };

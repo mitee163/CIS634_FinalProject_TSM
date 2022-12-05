@@ -3,15 +3,18 @@ import {
     Table,
     Container,
     Row,
-    Col
+    Col,
+    Button
 } from 'reactstrap'
 import Base from '../../components/Base'
 import { getUserDetails } from '../../services/user-service';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const UserBills = () => {
   const [allUserBills,setAllUserBills] = useState([]);
-  const { us_id  } = useParams();
+  const location = useLocation();
+  const us_id = location.state.us_id;
+  const navigate =useNavigate ();
 
   useEffect(() => {
     getUserDetails(us_id).then((data)=>{
@@ -23,10 +26,27 @@ const UserBills = () => {
     })
 }, []);
 
+const addNewBill = (event) => {        
+  navigate("/admin/add-bill",{state:{us_id:us_id}});
+};
+
+const editBill = (event,param) => {        
+  navigate("/admin/edit-bill",{state:{billobj: param}});
+};
+
   return (
     <Base>
-    <Container style={{marginTop: '20px'}}>
-    <Row><Col><h3>User's Bills:</h3></Col></Row>
+    <Container style={{marginTop: '20px'}}>  
+    <Row>
+      <Col><h3>User's Bills:</h3></Col>
+      <Col xs={2}>
+      <div>
+                  <Button outline className="text-right" onClick={event => addNewBill(event)}>
+                    Add New Bill
+                  </Button>
+              </div>
+              </Col>
+      </Row>
     <Table striped bordered hover style={{marginTop: '20px'}}>
       <thead>
         <tr>
@@ -35,6 +55,7 @@ const UserBills = () => {
           <th>Units</th>
           <th>Amount</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -56,6 +77,11 @@ const UserBills = () => {
                   </td>
                   <td>
                     <div>{bill.status}</div>
+                  </td>
+                  <td>
+                    <div>
+                    <Button variant="secondary" className="ms-2" onClick={event => editBill(event,bill)}>Edit Bill</Button>
+                    </div>
                   </td>
                 </tr>
   }))

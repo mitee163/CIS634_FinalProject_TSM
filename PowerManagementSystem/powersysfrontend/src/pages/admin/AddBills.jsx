@@ -3,10 +3,13 @@ import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstra
 import Base from "../../components/Base"
 import { createAddBills } from "../../services/addBills-service"
 import { loadAllUsers } from "../../services/category-service"
+import { useNavigate, useLocation } from "react-router-dom"
 
 const AddBills=()=>{
-
-    const [users, setUsers] = useState([])
+    //const [users, setUsers] = useState([]);
+    const location = useLocation();
+    const us_id = location.state.us_id;
+    const navigate = useNavigate();
 
     const [addbills, setAddbills]=useState({
         bill_Date:new Date(),
@@ -14,10 +17,10 @@ const AddBills=()=>{
         amount:"",
         units:"",
         status:"",
-        user_Id:"",
+        user_Id:us_id,
     })
 
-    useEffect(() => {
+   /*  useEffect(() => {
 
         loadAllUsers().then((data)=>{
             console.log(data);
@@ -25,7 +28,7 @@ const AddBills=()=>{
         }).catch(error=>{
             console.log(error);
         })
-    }, [])
+    }, []) */
 
     //fieldChanged function
     const fieldChanged=(event)=>{
@@ -42,7 +45,7 @@ const AddBills=()=>{
             amount:"",
             units:"",
             status:"",
-            user_Id:"",
+            user_Id:us_id,
         })
     }
 
@@ -93,8 +96,9 @@ const AddBills=()=>{
                 amount:"",
                 units:"",
                 status:"",
-                user_Id:"",
-            })
+                user_Id:us_id,
+            });
+            navigate("/admin/user-bills",{state:{us_id:us_id}});
             // console.log(addbills);
         }).catch((error)=>{
             alert("error");
@@ -110,9 +114,9 @@ const AddBills=()=>{
             <Card className="shadow-sm">
                 <CardBody>
                     {/* {JSON.stringify(addbills)} */}
-                    <h3>Add Bill Details</h3>
+                    <h3>Add Bill Details (User Id: {us_id})</h3>
                     <Form onSubmit={createBill}>
-                    <div className="my-3">
+                    {/* <div className="my-3">
                             <Label for="category">Post category</Label>
                             <Input type="select" id="category" placeholder="Enter here" name="user_Id" onChange={fieldChanged} defaultValue={0}>
                                 <option disabled value={0}>--Select User--</option>
@@ -124,7 +128,7 @@ const AddBills=()=>{
                                     ))
                                 }
                             </Input>
-                        </div>
+                        </div> */}
                         <div className="my-3">
                             <Label for="title">Amount</Label>
                             <Input type="text" id="title" placeholder="Enter here" name="amount" onChange={fieldChanged} />

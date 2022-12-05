@@ -18,8 +18,8 @@ const Admindashboard = () => {
     const navigate =useNavigate ();
 
     const viewUserBills = (event,param) => {        
-      let urlv = `/admin/user-bills/${param}`;
-      navigate(urlv);
+      //let urlv = `/admin/user-bills/${param}`;
+      navigate("/admin/user-bills",{state:{us_id:param}});
    };
 
     useEffect(() => {
@@ -51,14 +51,6 @@ const Admindashboard = () => {
                 <Col xs={3}>Address:</Col>
                 <Col>{object.user.data.address}</Col>
             </Row>
-            <div>
-              <div><h6>Add Bill details:</h6></div>
-              <div>
-                  <Button outline className="text-right" tag={ReactLink} to="/admin/add-bill">
-                    Add Bill
-                  </Button>
-              </div>
-            </div>
             <Row style={{marginTop: '20px'}}><Col><h5>All users of the system:</h5></Col></Row>
         <Table striped bordered hover style={{marginTop: '20px'}}>
       <thead>
