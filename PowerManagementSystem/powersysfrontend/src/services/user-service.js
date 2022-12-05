@@ -1,4 +1,4 @@
-import { myAxios } from "./helper";
+import { myAxios, privateAxios } from "./helper";
 
 export const signUp=(user)=>{
     
@@ -20,3 +20,8 @@ export const getUserDetails = (userId)=>{
 export const getUsers = ()=>{
     return myAxios.post("/auth/users").then((response)=>response.data)
 }
+
+//delete bill
+export function deletBillService(billId) {
+    return privateAxios.delete(`/bills/${billId}`).then((res) => res.data);
+  }
