@@ -56,7 +56,7 @@ const AddBills=()=>{
         event.preventDefault();
 
         console.log(addbills);
-        if(addbills.amount.trim()===''){
+        if(addbills.amount === null){
             alert("Amount is required !!")
             return;
         }
@@ -76,12 +76,12 @@ const AddBills=()=>{
             return;
         }
 
-        if(addbills.units.trim()===''){
+        if(addbills.units === null){
             alert("Units are required !!")
             return;
         }
 
-        if(addbills.user_Id.trim()===''){
+        if(addbills.user_Id === null){
             alert("Please select User !!")
             return;
         }
