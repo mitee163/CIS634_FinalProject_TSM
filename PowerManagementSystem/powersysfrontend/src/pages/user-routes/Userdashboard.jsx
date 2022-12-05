@@ -9,8 +9,23 @@ import {
 } from 'reactstrap'
 import Base from '../../components/Base'
 import userContext from '../../context/userContext'
+import { editBillById } from '../../services/addBills-service'
 
 const Userdashboard = () => {
+
+  const navigate = useNavigate();
+
+  const billPayment = (event,param) => {  
+    const obj = param;
+    obj.status = "paid";
+    editBillById(obj).then(data=>{
+      navigate("/user/billPaid");
+  }).catch((error)=>{
+      alert("error");
+      console.log(error);
+  })
+  };      
+
   return(
     <userContext.Consumer>
       {(object) => (
@@ -63,7 +78,7 @@ const Userdashboard = () => {
                     <div>{bill.status}</div>
                   </td>
                   <td>
-                  <Button variant="secondary" className="ms-2" disabled={bill.status == "paid"} tag={ReactLink} to="/user/billPaid">Pay Bill</Button>
+                  <Button variant="secondary" className="ms-2" disabled={bill.status == "paid"} onClick={event => billPayment(event,bill)}>Pay Bill</Button>
                   </td>
                 </tr>
   }))
