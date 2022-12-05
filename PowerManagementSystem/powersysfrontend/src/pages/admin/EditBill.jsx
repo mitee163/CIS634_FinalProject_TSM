@@ -23,7 +23,7 @@ const EditBill=()=>{
     }
     
     const goBack=()=>{
-        navigate("/admin/user-bills",{state:{us_id:billobj.user_Id}});
+        navigate("/admin/user-bills",{state:{us_id:billobj.user_Id,us_name:us_name}});
     }
 
 

@@ -51,7 +51,7 @@ const AddBills=()=>{
     }
     
     const goBack=()=>{
-        navigate("/admin/user-bills",{state:{us_id:us_id}});
+        navigate("/admin/user-bills",{state:{us_id:us_id,us_name:us_name}});
     }
 
 
