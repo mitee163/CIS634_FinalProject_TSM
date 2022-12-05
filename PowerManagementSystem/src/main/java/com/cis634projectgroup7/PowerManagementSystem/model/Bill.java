@@ -97,4 +97,12 @@ public class Bill {
 	public void setUser_Id(int user_Id) {
 		User_Id = user_Id;
 	}
+	
+	public int getBill_Id() {
+		return Bill_Id;
+	}
+
+	public void setBill_Id(int bill_Id) {
+		Bill_Id = bill_Id;
+	}
 }
