@@ -38,7 +38,7 @@ const Admindashboard = () => {
         
         <Base>
         <Container style={{marginTop: '20px'}}>
-        <Row><Col><h2>Admin Dashboard</h2></Col></Row>
+        <Row className="text-center"><Col><h2>Admin Dashboard</h2></Col></Row>
         <Row><Col><h3>Admin Details:</h3></Col></Row>
         <Row>
                 <Col xs={3}>Name:</Col>
