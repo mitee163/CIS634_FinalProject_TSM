@@ -1,27 +1,35 @@
-import { useEffect, useState } from "react"
-import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstrap"
-import Base from "../../components/Base"
-import { createAddBills } from "../../services/addBills-service"
-import { useNavigate, useLocation } from "react-router-dom"
-import { toast } from "react-toastify"
+import { useEffect, useState } from 'react'
+import {
+    Button,
+    Card,
+    CardBody,
+    Container,
+    Form,
+    Input,
+    Label,
+} from 'reactstrap'
+import Base from '../../components/Base'
+import { createAddBills } from '../../services/addBills-service'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-const AddBills=()=>{
+const AddBills = () => {
     //const [users, setUsers] = useState([]);
-    const location = useLocation();
-    const us_id = location.state.us_id;
-    const us_name = location.state.us_name;
-    const navigate = useNavigate();
+    const location = useLocation()
+    const us_id = location.state.us_id
+    const us_name = location.state.us_name
+    const navigate = useNavigate()
 
-    const [addbills, setAddbills]=useState({
-        bill_Date:new Date(),
-        due_Date:new Date(),
-        amount:"",
-        units:"",
-        status:"",
-        user_Id:us_id,
+    const [addbills, setAddbills] = useState({
+        bill_Date: new Date(),
+        due_Date: new Date(),
+        amount: '',
+        units: '',
+        status: '',
+        user_Id: us_id,
     })
 
-   /*  useEffect(() => {
+    /*  useEffect(() => {
 
         loadAllUsers().then((data)=>{
             console.log(data);
@@ -32,97 +40,95 @@ const AddBills=()=>{
     }, []) */
 
     //fieldChanged function
-    const fieldChanged=(event)=>{
-        
-        setAddbills({...addbills,[event.target.name]:event.target.value})
-
+    const fieldChanged = (event) => {
+        setAddbills({ ...addbills, [event.target.name]: event.target.value })
     }
-    
 
-    const resetData=() => {
+    const resetData = () => {
         setAddbills({
-            bill_Date:new Date(),
-            due_Date:new Date(),
-            amount:"",
-            units:"",
-            status:"",
-            user_Id:us_id,
+            bill_Date: new Date(),
+            due_Date: new Date(),
+            amount: '',
+            units: '',
+            status: '',
+            user_Id: us_id,
         })
     }
-    
-    const goBack=()=>{
-        navigate("/admin/user-bills",{state:{us_id:us_id,us_name:us_name}});
-    }
 
+    const goBack = () => {
+        navigate('/admin/user-bills', {
+            state: { us_id: us_id, us_name: us_name },
+        })
+    }
 
     //create bill function
-    const createBill=(event)=>{
+    const createBill = (event) => {
+        event.preventDefault()
 
-        event.preventDefault();
-
-        console.log(addbills);
-        if(addbills.amount === null){
-            toast.error("Amount is required !!")
-            return;
+        console.log(addbills)
+        if (addbills.amount === null) {
+            toast.error('Amount is required !!')
+            return
         }
 
-        if(addbills.bill_Date.trim()===''){
-            toast.error("Bill Date is required !!")
-            return;
+        if (addbills.bill_Date.trim() === '') {
+            toast.error('Bill Date is required !!')
+            return
         }
 
-        if(addbills.due_Date.trim()===''){
-            toast.error("Due Date is required !!")
-            return;
+        if (addbills.due_Date.trim() === '') {
+            toast.error('Due Date is required !!')
+            return
         }
 
-        if(addbills.status.trim()===''){
-            toast.error("Status is required !!")
-            return;
+        if (addbills.status.trim() === '') {
+            toast.error('Status is required !!')
+            return
         }
 
-        if(addbills.units === null){
-            toast.error("Units are required !!")
-            return;
+        if (addbills.units === null) {
+            toast.error('Units are required !!')
+            return
         }
 
-        if(addbills.user_Id === null){
-            toast.error("Please select User !!")
-            return;
+        if (addbills.user_Id === null) {
+            toast.error('Please select User !!')
+            return
         }
-
 
         //submit the bill on server
-        createAddBills(addbills).then(data=>{
-            toast.success("Bill created");
-            setAddbills({
-                bill_Date:new Date(),
-                due_Date:new Date(),
-                amount:"",
-                units:"",
-                status:"",
-                user_Id:us_id,
-            });
-            navigate("/admin/user-bills",{state:{us_id:us_id,us_name:us_name}});
-            // console.log(addbills);
-        }).catch((error)=>{
-            toast.error("Enter all details!!");
-            console.log(error);
-        })
-
+        createAddBills(addbills)
+            .then((data) => {
+                toast.success('Bill created')
+                setAddbills({
+                    bill_Date: new Date(),
+                    due_Date: new Date(),
+                    amount: '',
+                    units: '',
+                    status: '',
+                    user_Id: us_id,
+                })
+                navigate('/admin/user-bills', {
+                    state: { us_id: us_id, us_name: us_name },
+                })
+                // console.log(addbills);
+            })
+            .catch((error) => {
+                toast.error('Enter all details!!')
+                console.log(error)
+            })
     }
 
-
-    return(
+    return (
         <Base>
-        <Container style={{marginTop: '20px'}}>
-        <div className="wrapper">
-            <Card className="shadow-sm">
-                <CardBody>
-                    {/* {JSON.stringify(addbills)} */}
-                    <h3>Add Bill Details (Name: {us_name})</h3>
-                    <Form onSubmit={createBill}>
-                    {/* <div className="my-3">
+            <Container style={{ marginTop: '20px' }}>
+                <div className="wrapper">
+                    <Card className="shadow-sm">
+                        <CardBody>
+                            {/* {JSON.stringify(addbills)} */}
+                            <h3>Add Bill Details (Name: {us_name})</h3>
+                            <Form onSubmit={createBill}>
+                                {/* <div className="my-3">
                             <Label for="category">Post category</Label>
                             <Input type="select" id="category" placeholder="Enter here" name="user_Id" onChange={fieldChanged} defaultValue={0}>
                                 <option disabled value={0}>--Select User--</option>
@@ -135,41 +141,87 @@ const AddBills=()=>{
                                 }
                             </Input>
                         </div> */}
-                        <div className="my-3">
-                            <Label for="title">Amount</Label>
-                            <Input type="text" id="title" placeholder="Enter here" name="amount" onChange={fieldChanged} />
-                        </div>
-                        <div className="my-3">
-                            <Label for="bDate">Bill Date</Label>
-                            <Input type="date" id="bDate" placeholder="date placeholder" name="bill_Date" onChange={fieldChanged} />
-                        </div>
-                        <div className="my-3">
-                            <Label for="dDate">Due Date</Label>
-                            <Input type="date" id="dDate" placeholder="date placeholder" name="due_Date" onChange={fieldChanged} />
-                        </div>
-                        <div className="my-3">
-                            <Label for="check">Status</Label>
-                            <Input type="select" id="check" placeholder="Enter here" name="status" onChange={fieldChanged} defaultValue={0}>
-                                <option>--Select--</option>
-                                <option>paid</option>
-                                <option>unpaid</option>
-                            </Input>
-                        </div>
-                        <div className="my-3">
-                            <Label for="unitsUsed">Units used</Label>
-                            <Input type="number" id="unitsUsed" placeholder="Enter here" name="units" onChange={fieldChanged} />
-                        </div>
-                            <Container className="text-center">
-                                <Button type="submit" color="primary">Add bill</Button>
-                                <Button onClick={resetData} type="reset" className="ms-2" color="danger">Reset</Button>
-                                <Button onClick={goBack} type="reset" className="ms-2" color="danger">Cancel</Button>
-                            </Container>
-                    </Form>
-                </CardBody>
-            </Card>
-
-        </div>
-        </Container>
+                                <div className="my-3">
+                                    <Label for="title">Amount</Label>
+                                    <Input
+                                        type="text"
+                                        id="title"
+                                        placeholder="Enter here"
+                                        name="amount"
+                                        onChange={fieldChanged}
+                                    />
+                                </div>
+                                <div className="my-3">
+                                    <Label for="bDate">Bill Date</Label>
+                                    <Input
+                                        type="date"
+                                        id="bDate"
+                                        placeholder="date placeholder"
+                                        name="bill_Date"
+                                        onChange={fieldChanged}
+                                    />
+                                </div>
+                                <div className="my-3">
+                                    <Label for="dDate">Due Date</Label>
+                                    <Input
+                                        type="date"
+                                        id="dDate"
+                                        placeholder="date placeholder"
+                                        name="due_Date"
+                                        onChange={fieldChanged}
+                                    />
+                                </div>
+                                <div className="my-3">
+                                    <Label for="check">Status</Label>
+                                    <Input
+                                        type="select"
+                                        id="check"
+                                        placeholder="Enter here"
+                                        name="status"
+                                        onChange={fieldChanged}
+                                        defaultValue={0}
+                                    >
+                                        <option>--Select--</option>
+                                        <option>paid</option>
+                                        <option>unpaid</option>
+                                    </Input>
+                                </div>
+                                <div className="my-3">
+                                    <Label for="unitsUsed">Units used</Label>
+                                    <Input
+                                        type="number"
+                                        id="unitsUsed"
+                                        placeholder="Enter here"
+                                        name="units"
+                                        onChange={fieldChanged}
+                                    />
+                                </div>
+                                <Container className="text-center">
+                                    <Button type="submit" color="primary">
+                                        Add bill
+                                    </Button>
+                                    <Button
+                                        onClick={resetData}
+                                        type="reset"
+                                        className="ms-2"
+                                        color="danger"
+                                    >
+                                        Reset
+                                    </Button>
+                                    <Button
+                                        onClick={goBack}
+                                        type="reset"
+                                        className="ms-2"
+                                        color="danger"
+                                    >
+                                        Cancel
+                                    </Button>
+                                </Container>
+                            </Form>
+                        </CardBody>
+                    </Card>
+                </div>
+            </Container>
         </Base>
     )
 }

@@ -16,77 +16,76 @@ import {
 import Base from '../components/Base'
 import { toast } from 'react-toastify'
 
-
-
 const Signup = () => {
-
-    const [data, setData]=useState({
-        name:"",
-        address:"",
+    const [data, setData] = useState({
+        name: '',
+        address: '',
         //email is passed as username
-        username:"",
-        password:"",
+        username: '',
+        password: '',
     })
 
-    const [error, setError]=useState({
-        errors:{},
-        isError:false,
+    const [error, setError] = useState({
+        errors: {},
+        isError: false,
     })
 
     useEffect(() => {
-        console.log(data);
+        console.log(data)
     }, [data])
 
     //handle change
-    const handleChange=(event,property)=>{
+    const handleChange = (event, property) => {
         //dynamic setting of values
-        setData({...data,[property]:event.target.value})
+        setData({ ...data, [property]: event.target.value })
     }
 
     //resetting the form
-    const resetData=() => {
-    setData({
-        name:"",
-        address:"",
-        username:"",
-        password:"",
-    })
-}
-
-//submit the form
-const submitForm=(event)=>{
-    event.preventDefault();
-
-    if(error.isError){
-        toast.error("Form data is invalid!!");
-        setError({...error,isError:false})
-        return;
+    const resetData = () => {
+        setData({
+            name: '',
+            address: '',
+            username: '',
+            password: '',
+        })
     }
 
-    console.log(data);
-    //data validate
+    //submit the form
+    const submitForm = (event) => {
+        event.preventDefault()
 
-    //call server api for sending data
-        signUp(data).then((resp)=>{
-            console.log(resp);
-            console.log("success log");
-            toast.success("User is Registered successfully!!");
-            setData({
-                name:"",
-                address:"",
-                username:"",
-                password:"",
+        if (error.isError) {
+            toast.error('Form data is invalid!!')
+            setError({ ...error, isError: false })
+            return
+        }
+
+        console.log(data)
+        //data validate
+
+        //call server api for sending data
+        signUp(data)
+            .then((resp) => {
+                console.log(resp)
+                console.log('success log')
+                toast.success('User is Registered successfully!!')
+                setData({
+                    name: '',
+                    address: '',
+                    username: '',
+                    password: '',
+                })
             })
-        }).catch((error)=>{
-            console.log(error);
-            console.log("Error log");
-            //handle errors in proper way.
-            setError({
-                errors:error,
-                isError:true
+            .catch((error) => {
+                console.log(error)
+                console.log('Error log')
+                //handle errors in proper way.
+                setError({
+                    errors: error,
+                    isError: true,
+                })
             })
-        })
-}
+    }
 
     return (
         <Base>
@@ -107,7 +106,9 @@ const submitForm=(event)=>{
                                             type="text"
                                             placeholder="Enter Here"
                                             id="name"
-                                            onChange={(e)=>handleChange(e,'name')}
+                                            onChange={(e) =>
+                                                handleChange(e, 'name')
+                                            }
                                             value={data.name}
                                             // invalid={ error.errors?.response?.data?.name ? true: false }
                                         />
@@ -122,7 +123,9 @@ const submitForm=(event)=>{
                                             type="address"
                                             placeholder="Enter Here"
                                             id="address"
-                                            onChange={(e)=>handleChange(e,'address')}
+                                            onChange={(e) =>
+                                                handleChange(e, 'address')
+                                            }
                                             value={data.address}
                                         />
                                     </FormGroup>
@@ -134,7 +137,9 @@ const submitForm=(event)=>{
                                             type="email"
                                             placeholder="Enter Here"
                                             id="email"
-                                            onChange={(e)=>handleChange(e,'username')}
+                                            onChange={(e) =>
+                                                handleChange(e, 'username')
+                                            }
                                             value={data.username}
                                         />
                                     </FormGroup>
@@ -148,7 +153,9 @@ const submitForm=(event)=>{
                                             type="password"
                                             placeholder="Enter Here"
                                             id="password"
-                                            onChange={(e)=>handleChange(e,'password')}
+                                            onChange={(e) =>
+                                                handleChange(e, 'password')
+                                            }
                                             value={data.password}
                                         />
                                     </FormGroup>

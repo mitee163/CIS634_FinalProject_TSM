@@ -1,41 +1,41 @@
 //isLoggedIn=>
 
-export const isLoggedIn=()=>{
-    let data = localStorage.getItem("data")
-    if(data != null){
-        return true;
+export const isLoggedIn = () => {
+    let data = localStorage.getItem('data')
+    if (data != null) {
+        return true
     } else {
-        return false;
+        return false
     }
-};
+}
 
 //doLogin=> data=> set to localstorage
 
-export const doLogin=(data,next)=>{
-    localStorage.setItem("data",JSON.stringify(data))
+export const doLogin = (data, next) => {
+    localStorage.setItem('data', JSON.stringify(data))
     next()
-};
+}
 
 //doLogout=> remove from local storage
 
-export const doLogout=(next)=>{
-    localStorage.removeItem("data");
+export const doLogout = (next) => {
+    localStorage.removeItem('data')
     next()
-};
+}
 
 //get currentUser
-export const getCurrentUserDetail=()=>{
+export const getCurrentUserDetail = () => {
     if (isLoggedIn()) {
-        return JSON.parse(localStorage.getItem("data"))?.user;
+        return JSON.parse(localStorage.getItem('data'))?.user
     } else {
-        return undefined;
+        return undefined
     }
-};
+}
 
-export const getToken=()=>{
-    if(isLoggedIn()){
-        return JSON.parse(localStorage.getItem("data")).token
-    }else{
-        return null;
+export const getToken = () => {
+    if (isLoggedIn()) {
+        return JSON.parse(localStorage.getItem('data')).token
+    } else {
+        return null
     }
 }

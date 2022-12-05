@@ -15,83 +15,89 @@ import {
 } from 'reactstrap'
 import Base from '../components/Base'
 import { loginUser } from '../services/user-service'
-import { doLogin } from '../auth';
+import { doLogin } from '../auth'
 import { useNavigate } from 'react-router-dom'
 import userContext from '../context/userContext'
 
 const Login = () => {
-    const userContextData=useContext(userContext);
+    const userContextData = useContext(userContext)
 
-    const navigate =useNavigate ();
+    const navigate = useNavigate()
 
-    const[loginDetail, setLoginDetail]=useState({
-        username:"",
-        password:""
+    const [loginDetail, setLoginDetail] = useState({
+        username: '',
+        password: '',
     })
 
-    const handleChange=(event,field)=>{
-
-        let actualValue=event.target.value
+    const handleChange = (event, field) => {
+        let actualValue = event.target.value
         setLoginDetail({
             ...loginDetail,
-            [field]:actualValue
+            [field]: actualValue,
         })
-
     }
 
-    const handleReset=()=>{
+    const handleReset = () => {
         setLoginDetail({
-            username:"",
-            password:""
+            username: '',
+            password: '',
         })
     }
 
-    const handleFormSubmit=(event)=>{
-        event.preventDefault();
-        console.log(loginDetail);
+    const handleFormSubmit = (event) => {
+        event.preventDefault()
+        console.log(loginDetail)
         //validation
-        if(loginDetail.username.trim()=='' || loginDetail.password.trim()==''){
-            toast.error("Username or password is required !!")
-            return;
+        if (
+            loginDetail.username.trim() == '' ||
+            loginDetail.password.trim() == ''
+        ) {
+            toast.error('Username or password is required !!')
+            return
         }
 
-
         //submit the data to server to generate token
-        loginUser(loginDetail).then((data)=>{
-            console.log(data);
+        loginUser(loginDetail)
+            .then((data) => {
+                console.log(data)
 
-            //save the data to localstorage
-            doLogin(data,()=>{
-                toast.success("User logged in successfully!!")
-                console.log("login details saved to localstorage");
-                //redirect to user dashboard page
-                userContextData.setUser({
-                    data: data,
-                    login: true
-                });
+                //save the data to localstorage
+                doLogin(data, () => {
+                    toast.success('User logged in successfully!!')
+                    console.log('login details saved to localstorage')
+                    //redirect to user dashboard page
+                    userContextData.setUser({
+                        data: data,
+                        login: true,
+                    })
 
-                if(data.user.roles !== null && data.user.roles[0].role_Id === 602)
-                {
-                    navigate("/user/dashboard");
-                }
-                else if(data.user.roles !== null && data.user.roles[0].role_Id === 601)
-                {
-                    navigate("/admin/dashboard");
-                }
-                //navigate("/user/dashboard");
+                    if (
+                        data.user.roles !== null &&
+                        data.user.roles[0].role_Id === 602
+                    ) {
+                        navigate('/user/dashboard')
+                    } else if (
+                        data.user.roles !== null &&
+                        data.user.roles[0].role_Id === 601
+                    ) {
+                        navigate('/admin/dashboard')
+                    }
+                    //navigate("/user/dashboard");
+                })
+                window.location.reload()
             })
-            window.location.reload();
-        }).catch(error=>{
-            console.log(error);
-            if(error.response.status==400 || error.response.status==404){
-                toast.error(error.response.data.message)
-            }
-            else{
-                toast.error("Login details incorrect !!")
-            }
-        })
-
-    };
+            .catch((error) => {
+                console.log(error)
+                if (
+                    error.response.status == 400 ||
+                    error.response.status == 404
+                ) {
+                    toast.error(error.response.data.message)
+                } else {
+                    toast.error('Login details incorrect !!')
+                }
+            })
+    }
 
     return (
         <Base>
@@ -113,7 +119,9 @@ const Login = () => {
                                             placeholder="Enter Here"
                                             id="email"
                                             value={loginDetail.username}
-                                            onChange={(e)=> handleChange(e,'username')}
+                                            onChange={(e) =>
+                                                handleChange(e, 'username')
+                                            }
                                         />
                                     </FormGroup>
 
@@ -127,7 +135,9 @@ const Login = () => {
                                             placeholder="Enter Here"
                                             id="password"
                                             value={loginDetail.password}
-                                            onChange={(e)=> handleChange(e,'password')}
+                                            onChange={(e) =>
+                                                handleChange(e, 'password')
+                                            }
                                         />
                                     </FormGroup>
 
@@ -139,7 +149,8 @@ const Login = () => {
                                             color="secondary"
                                             type="reset"
                                             outline
-                                            className="ms-2"onClick={handleReset}
+                                            className="ms-2"
+                                            onClick={handleReset}
                                         >
                                             Reset
                                         </Button>

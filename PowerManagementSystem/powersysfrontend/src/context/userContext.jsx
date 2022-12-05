@@ -1,5 +1,5 @@
-const {createContext} = require("react");
+const { createContext } = require('react')
 
-const userContext = createContext(null);
+const userContext = createContext(null)
 
-export default userContext;
+export default userContext

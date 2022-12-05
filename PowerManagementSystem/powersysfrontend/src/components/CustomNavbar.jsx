@@ -18,34 +18,30 @@ import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth'
 import userContext from '../context/userContext'
 
 const CustomNavbar = () => {
-    const userContextData = useContext(userContext);
-    let navigate=useNavigate();
+    const userContextData = useContext(userContext)
+    let navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
 
-    const [login, setLogin]=useState(false)
-    const [user, setUser]=useState(undefined)
+    const [login, setLogin] = useState(false)
+    const [user, setUser] = useState(undefined)
 
-    useEffect(()=>{
-
+    useEffect(() => {
         setLogin(isLoggedIn())
         setUser(getCurrentUserDetail())
+    }, [login])
 
-    },[login])
-
-
-    const logout=()=>{
-        doLogout(()=>{
+    const logout = () => {
+        doLogout(() => {
             //logged out
             setLogin(false)
             userContextData.setUser({
-                data:null,
-                login:false
+                data: null,
+                login: false,
             })
 
-            navigate("/")
+            navigate('/')
         })
     }
-
 
     return (
         <div>
@@ -54,7 +50,6 @@ const CustomNavbar = () => {
                 <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
-
                         {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
@@ -74,44 +69,32 @@ const CustomNavbar = () => {
               </UncontrolledDropdown> */}
                     </Nav>
                     <Nav navbar>
-
-                        {
-                            login && (
+                        {login && (
                             <>
                                 <NavItem>
-                                    <NavLink onClick={logout}>
-                                        Logout
-                                    </NavLink>
+                                    <NavLink onClick={logout}>Logout</NavLink>
                                 </NavItem>
 
                                 <NavItem>
-                                    <NavLink>
-                                        {user.username}
+                                    <NavLink>{user.username}</NavLink>
+                                </NavItem>
+                            </>
+                        )}
+
+                        {!login && (
+                            <>
+                                <NavItem>
+                                    <NavLink tag={ReactLink} to="/">
+                                        Login
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={ReactLink} to="/signup">
+                                        Sign Up
                                     </NavLink>
                                 </NavItem>
                             </>
-                            )
-                        }
-
-                        {
-                            !login && (
-                                <>
-
-                                    <NavItem>
-                                        <NavLink tag={ReactLink} to="/">
-                                            Login
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink tag={ReactLink} to="/signup">
-                                            Sign Up
-                                        </NavLink>
-                                    </NavItem>
-
-                                </>
-                            )
-                        }
-
+                        )}
                     </Nav>
                 </Collapse>
             </Navbar>
