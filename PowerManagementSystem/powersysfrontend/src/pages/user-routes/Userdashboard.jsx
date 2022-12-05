@@ -32,6 +32,7 @@ const Userdashboard = () => {
         
         <Base>
         <Container style={{marginTop: '20px'}}>
+        <Row><Col><h2>User Dashboard</h2></Col></Row>
         <Row><Col><h3>User Details:</h3></Col></Row>
         <Row>
                 <Col xs={3}>Name:</Col>

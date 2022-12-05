@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 const EditBill=()=>{
     const location = useLocation();
     const billobj = location.state.billobj;
+    const us_name = location.state.us_name;
     const navigate = useNavigate();
 
     const [addbills, setAddbills]= useState(billobj);
@@ -79,7 +80,7 @@ const EditBill=()=>{
                 status:"",
                 user_Id:billobj.user_Id,
             });
-            navigate("/admin/user-bills",{state:{us_id:billobj.user_Id}});
+            navigate("/admin/user-bills",{state:{us_id:billobj.user_Id,us_name:us_name}});
             // console.log(addbills);
         }).catch((error)=>{
             alert("error");
@@ -94,7 +95,7 @@ const EditBill=()=>{
         <div className="wrapper">
             <Card className="shadow-sm">
                 <CardBody>
-                    <h3>Edit Bill Details (User Id: {billobj.user_Id})</h3>
+                    <h3>Edit Bill Details (Name: {us_name})</h3>
                     <Form onSubmit={createBill}>
                         <div className="my-3">
                             <Label for="title">Amount</Label>

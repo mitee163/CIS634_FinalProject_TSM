@@ -14,6 +14,7 @@ const UserBills = () => {
   const [allUserBills,setAllUserBills] = useState([]);
   const location = useLocation();
   const us_id = location.state.us_id;
+  const us_name = location.state.us_name;
   const navigate =useNavigate ();
 
   useEffect(() => {
@@ -27,18 +28,18 @@ const UserBills = () => {
 }, []);
 
 const addNewBill = (event) => {        
-  navigate("/admin/add-bill",{state:{us_id:us_id}});
+  navigate("/admin/add-bill",{state:{us_id:us_id,us_name:us_name}});
 };
 
 const editBill = (event,param) => {        
-  navigate("/admin/edit-bill",{state:{billobj: param}});
+  navigate("/admin/edit-bill",{state:{billobj: param,us_name:us_name}});
 };
 
   return (
     <Base>
     <Container style={{marginTop: '20px'}}>  
     <Row>
-      <Col><h3>User's Bills:</h3></Col>
+      <Col><h3>User's Bills: (Name: {us_name})</h3></Col>
       <Col xs={2}>
       <div>
                   <Button outline className="text-right" onClick={event => addNewBill(event)}>

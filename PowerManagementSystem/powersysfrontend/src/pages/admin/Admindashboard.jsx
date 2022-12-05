@@ -19,7 +19,7 @@ const Admindashboard = () => {
 
     const viewUserBills = (event,param) => {        
       //let urlv = `/admin/user-bills/${param}`;
-      navigate("/admin/user-bills",{state:{us_id:param}});
+      navigate("/admin/user-bills",{state:{us_id:param.user_Id,us_name:param.name}});
    };
 
     useEffect(() => {
@@ -38,6 +38,7 @@ const Admindashboard = () => {
         
         <Base>
         <Container style={{marginTop: '20px'}}>
+        <Row><Col><h2>Admin Dashboard</h2></Col></Row>
         <Row><Col><h3>Admin Details:</h3></Col></Row>
         <Row>
                 <Col xs={3}>Name:</Col>
@@ -76,7 +77,7 @@ const Admindashboard = () => {
                     <div>{u.address}</div>
                   </td>
                   <td>
-                  <Button variant="secondary" className="ms-2" onClick={event => viewUserBills(event,u.user_Id)}>View Bills</Button>
+                  <Button variant="secondary" className="ms-2" onClick={event => viewUserBills(event,u)}>View Bills</Button>
                   </td>
                 </tr>
   }))

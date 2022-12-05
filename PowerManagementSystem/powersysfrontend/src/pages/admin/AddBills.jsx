@@ -9,6 +9,7 @@ const AddBills=()=>{
     //const [users, setUsers] = useState([]);
     const location = useLocation();
     const us_id = location.state.us_id;
+    const us_name = location.state.us_name;
     const navigate = useNavigate();
 
     const [addbills, setAddbills]=useState({
@@ -102,7 +103,7 @@ const AddBills=()=>{
                 status:"",
                 user_Id:us_id,
             });
-            navigate("/admin/user-bills",{state:{us_id:us_id}});
+            navigate("/admin/user-bills",{state:{us_id:us_id,us_name:us_name}});
             // console.log(addbills);
         }).catch((error)=>{
             alert("error");
@@ -118,7 +119,7 @@ const AddBills=()=>{
             <Card className="shadow-sm">
                 <CardBody>
                     {/* {JSON.stringify(addbills)} */}
-                    <h3>Add Bill Details (User Id: {us_id})</h3>
+                    <h3>Add Bill Details (Name: {us_name})</h3>
                     <Form onSubmit={createBill}>
                     {/* <div className="my-3">
                             <Label for="category">Post category</Label>
