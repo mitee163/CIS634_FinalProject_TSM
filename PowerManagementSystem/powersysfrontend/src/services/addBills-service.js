@@ -13,7 +13,7 @@ export const createAddBills=(billData)=>{
 
 export const editBillById=(billData)=>{
         // console.log(billData);
-        const apiurlvar = `/bills/${billData.user_Id}`;
+        const apiurlvar = `/bills/${billData.bill_Id}`;
         return privateAxios.put
         (
                 apiurlvar,
