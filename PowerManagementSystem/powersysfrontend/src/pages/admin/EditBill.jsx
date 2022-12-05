@@ -21,6 +21,10 @@ const EditBill=()=>{
         setAddbills({...addbills,[event.target.name]:event.target.value})
     }
     
+    const goBack=()=>{
+        navigate("/admin/user-bills",{state:{us_id:billobj.user_Id}});
+    }
+
 
     const resetData=() => {
         setAddbills(billobj)
@@ -90,7 +94,7 @@ const EditBill=()=>{
         <div className="wrapper">
             <Card className="shadow-sm">
                 <CardBody>
-                    <h3>Edit Bill Details (User id: {billobj.user_Id})</h3>
+                    <h3>Edit Bill Details (User Id: {billobj.user_Id})</h3>
                     <Form onSubmit={createBill}>
                         <div className="my-3">
                             <Label for="title">Amount</Label>
@@ -115,6 +119,7 @@ const EditBill=()=>{
                             <Container className="text-center">
                                 <Button type="submit" color="primary">Save Changes</Button>
                                 <Button onClick={resetData} type="reset" className="ms-2" color="danger">Reset</Button>
+                                <Button onClick={goBack} type="reset" className="ms-2" color="danger">Cancel</Button>
                             </Container>
 
                     </Form>

@@ -48,6 +48,10 @@ const AddBills=()=>{
             user_Id:us_id,
         })
     }
+    
+    const goBack=()=>{
+        navigate("/admin/user-bills",{state:{us_id:us_id}});
+    }
 
 
     //create bill function
@@ -156,8 +160,8 @@ const AddBills=()=>{
                             <Container className="text-center">
                                 <Button type="submit" color="primary">Add bill</Button>
                                 <Button onClick={resetData} type="reset" className="ms-2" color="danger">Reset</Button>
+                                <Button onClick={goBack} type="reset" className="ms-2" color="danger">Cancel</Button>
                             </Container>
-
                     </Form>
                 </CardBody>
             </Card>
