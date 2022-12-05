@@ -114,6 +114,7 @@ const AddBills=()=>{
 
     return(
         <Base>
+        <Container style={{marginTop: '20px'}}>
         <div className="wrapper">
             <Card className="shadow-sm">
                 <CardBody>
@@ -167,6 +168,7 @@ const AddBills=()=>{
             </Card>
 
         </div>
+        </Container>
         </Base>
     )
 }

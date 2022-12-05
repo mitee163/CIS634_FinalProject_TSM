@@ -8,7 +8,7 @@ import {
 } from 'reactstrap'
 import Base from '../../components/Base'
 import { getUserDetails } from '../../services/user-service';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, NavLink as ReactLink } from 'react-router-dom';
 import { deletBillService } from '../../services/addBills-service';
 
 const UserBills = () => {
@@ -56,11 +56,14 @@ const deleteBill = (event,param) => {
     <Row>
       <Col><h3>User's Bills: (Name: {us_name})</h3></Col>
       <Col xs={2}>
-      <div>
                   <Button outline className="text-right" onClick={event => addNewBill(event)}>
                     Add New Bill
                   </Button>
-              </div>
+              </Col>
+              <Col xs={3}>
+                  <Button outline className="text-right" tag={ReactLink} to="/admin/dashboard">
+                    Go To Admin Dashboard
+                  </Button>
               </Col>
       </Row>
     <Table striped bordered hover style={{marginTop: '20px'}}>

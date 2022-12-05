@@ -92,6 +92,7 @@ const EditBill=()=>{
 
     return(
         <Base>
+        <Container style={{marginTop: '20px'}}>
         <div className="wrapper">
             <Card className="shadow-sm">
                 <CardBody>
@@ -132,6 +133,7 @@ const EditBill=()=>{
             </Card>
 
         </div>
+        </Container>
         </Base>
     )
 }
