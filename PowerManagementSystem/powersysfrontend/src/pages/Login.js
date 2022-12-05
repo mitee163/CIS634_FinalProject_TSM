@@ -62,6 +62,7 @@ const Login = () => {
 
             //save the data to localstorage
             doLogin(data,()=>{
+                toast.success("User logged in successfully!!")
                 console.log("login details saved to localstorage");
                 //redirect to user dashboard page
                 userContextData.setUser({
@@ -79,15 +80,14 @@ const Login = () => {
                 }
                 //navigate("/user/dashboard");
             })
-
-            toast.success("User logged in successfully!!")
+            window.location.reload();
         }).catch(error=>{
             console.log(error);
             if(error.response.status==400 || error.response.status==404){
                 toast.error(error.response.data.message)
             }
             else{
-                toast.error("Somethin went wrong on server !!")
+                toast.error("Login details incorrect !!")
             }
         })
 
