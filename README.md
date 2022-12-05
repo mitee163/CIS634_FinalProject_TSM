@@ -4,8 +4,11 @@ Final Project For CIS 634 Object-Oriented Software Engr Under Prof. Xiong
 
 Group Members:
 Mitee Patel (Test Cases and Backend programming)
+
 Tapan Desai (Software Requirement Specification, Documentations and Testing the project)
+
 Shaishav Shah (Code implentation and front-end programming)
+
 Kinjal Patel(Design Documentation and Presentation)
 
 Pre-requisistes for project:
