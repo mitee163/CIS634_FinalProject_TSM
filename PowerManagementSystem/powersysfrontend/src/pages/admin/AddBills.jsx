@@ -143,7 +143,11 @@ const AddBills=()=>{
                         </div>
                         <div className="my-3">
                             <Label for="check">Status</Label>
-                            <Input type="text" id="check" placeholder="Paid or Unpaid" name="status" onChange={fieldChanged} />
+                            <Input type="select" id="check" placeholder="Enter here" name="status" onChange={fieldChanged} defaultValue={0}>
+                                <option>--Select--</option>
+                                <option>paid</option>
+                                <option>unpaid</option>
+                            </Input>
                         </div>
                         <div className="my-3">
                             <Label for="unitsUsed">Units used</Label>
