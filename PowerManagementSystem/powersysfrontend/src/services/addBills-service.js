@@ -21,3 +21,8 @@ export const editBillById=(billData)=>{
         )
                 .then((response)=>response.data)
     };
+
+//delete bill
+export const deletBillService = (billId) => {
+        return privateAxios.delete(`/bills/${billId}`).then((res) => res.data);
+      };

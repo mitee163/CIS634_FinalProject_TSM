@@ -9,6 +9,7 @@ import {
 import Base from '../../components/Base'
 import { getUserDetails } from '../../services/user-service';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { deletBillService } from '../../services/addBills-service';
 
 const UserBills = () => {
   const [allUserBills,setAllUserBills] = useState([]);
@@ -33,6 +34,20 @@ const addNewBill = (event) => {
 
 const editBill = (event,param) => {        
   navigate("/admin/edit-bill",{state:{billobj: param,us_name:us_name}});
+};
+
+const deleteBill = (event,param) => {        
+  deletBillService(param.bill_Id).then((data)=>{
+    getUserDetails(us_id).then((data)=>{
+      let usr = data;
+      setAllUserBills(usr.bills);
+    }).catch(error=>{
+        console.log(error);
+    });
+    alert("Bill deleted!");
+  }).catch(error=>{
+      console.log(error);
+  })
 };
 
   return (
@@ -82,6 +97,7 @@ const editBill = (event,param) => {
                   <td>
                     <div>
                     <Button variant="secondary" className="ms-2" onClick={event => editBill(event,bill)}>Edit Bill</Button>
+                    <Button variant="secondary" className="ms-2" onClick={event => deleteBill(event,bill)}>Delete Bill</Button>
                     </div>
                   </td>
                 </tr>

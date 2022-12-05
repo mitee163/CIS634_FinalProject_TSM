@@ -11,7 +11,7 @@ import {
 } from 'reactstrap'
 import Base from '../../components/Base'
 import userContext from '../../context/userContext'
-import { loadAllUsers } from "../../services/category-service"
+import { loadAllUsers } from "../../services/user-service"
 
 const Admindashboard = () => {
     const [normalUsers, setNormalUsers] = useState([]);

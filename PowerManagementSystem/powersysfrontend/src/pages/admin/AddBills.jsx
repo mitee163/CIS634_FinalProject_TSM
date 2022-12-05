@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstrap"
 import Base from "../../components/Base"
 import { createAddBills } from "../../services/addBills-service"
-import { loadAllUsers } from "../../services/category-service"
 import { useNavigate, useLocation } from "react-router-dom"
 
 const AddBills=()=>{
