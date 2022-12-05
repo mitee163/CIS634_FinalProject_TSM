@@ -8,7 +8,7 @@ Group 7 Members:
 
 2. Tapan Desai (Software Requirement Specification, Documentations and Testing the project)
 
-3. Shaishav Shah (Code implentation and front-end programming)
+3. Shaishav Shah (Code implementation and front-end programming)
 
 4. Kinjal Patel(Design Documentation and Presentation)
 
