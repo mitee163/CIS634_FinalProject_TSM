@@ -12,12 +12,19 @@ Shaishav Shah (Code implentation and front-end programming)
 Kinjal Patel(Design Documentation and Presentation)
 
 Pre-requisistes for project:
+
 VS Code
+
 Ecilipse
+
 Php Admin for Database
+
 React.JS
+
 SpringBoot
+
 Xampp Server
+
 Node.js
 
 A video file is provided for guiding on how to run the project.
