@@ -10,6 +10,7 @@ import Base from '../../components/Base'
 import { getUserDetails } from '../../services/user-service';
 import { useNavigate, useLocation, NavLink as ReactLink } from 'react-router-dom';
 import { deletBillService } from '../../services/addBills-service';
+import { toast } from 'react-toastify';
 
 const UserBills = () => {
   const [allUserBills,setAllUserBills] = useState([]);
@@ -44,7 +45,7 @@ const deleteBill = (event,param) => {
     }).catch(error=>{
         console.log(error);
     });
-    alert("Bill deleted!");
+    toast.success("Bill deleted!");
   }).catch(error=>{
       console.log(error);
   })

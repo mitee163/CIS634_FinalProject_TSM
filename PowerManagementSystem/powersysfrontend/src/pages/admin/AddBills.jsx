@@ -3,6 +3,7 @@ import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstra
 import Base from "../../components/Base"
 import { createAddBills } from "../../services/addBills-service"
 import { useNavigate, useLocation } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const AddBills=()=>{
     //const [users, setUsers] = useState([]);
@@ -61,39 +62,39 @@ const AddBills=()=>{
 
         console.log(addbills);
         if(addbills.amount === null){
-            alert("Amount is required !!")
+            toast.error("Amount is required !!")
             return;
         }
 
         if(addbills.bill_Date.trim()===''){
-            alert("Bill Date is required !!")
+            toast.error("Bill Date is required !!")
             return;
         }
 
         if(addbills.due_Date.trim()===''){
-            alert("Due Date is required !!")
+            toast.error("Due Date is required !!")
             return;
         }
 
         if(addbills.status.trim()===''){
-            alert("Status is required !!")
+            toast.error("Status is required !!")
             return;
         }
 
         if(addbills.units === null){
-            alert("Units are required !!")
+            toast.error("Units are required !!")
             return;
         }
 
         if(addbills.user_Id === null){
-            alert("Please select User !!")
+            toast.error("Please select User !!")
             return;
         }
 
 
         //submit the bill on server
         createAddBills(addbills).then(data=>{
-            alert("Bill created");
+            toast.success("Bill created");
             setAddbills({
                 bill_Date:new Date(),
                 due_Date:new Date(),
@@ -105,7 +106,7 @@ const AddBills=()=>{
             navigate("/admin/user-bills",{state:{us_id:us_id,us_name:us_name}});
             // console.log(addbills);
         }).catch((error)=>{
-            alert("error");
+            toast.error("Enter all details!!");
             console.log(error);
         })
 

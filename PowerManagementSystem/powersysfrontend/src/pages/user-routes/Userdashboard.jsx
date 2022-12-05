@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink as ReactLink, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import {
     Table,
     Container,
@@ -21,7 +22,7 @@ const Userdashboard = () => {
     editBillById(obj).then(data=>{
       navigate("/user/billPaid");
   }).catch((error)=>{
-      alert("error");
+      toast.error("error");
       console.log(error);
   })
   };      
